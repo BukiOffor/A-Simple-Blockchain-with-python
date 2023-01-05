@@ -10,8 +10,10 @@ def main():
 def mining():
     try:
         counter = 0
+        # select transactions from transaction pools
         with open("mining_pool.csv") as file:
             reader = csv.reader(file)
+            #mining transactions and adding to the chain
             for lines in reader:
                 transaction = repr(lines).encode()
                 hash = hashlib.sha256(transaction).hexdigest()
@@ -22,7 +24,7 @@ def mining():
                 Blockchain.append(blocks)
                 counter += 1
         
-
+        #writing a public blockchain ledger
         with open("BlockChainLedger.csv", 'a')as file:
             writer = csv.DictWriter(file, fieldnames=[ 'prev_block','block_header', "difficulty",'time','transactions'])
             writer.writeheader()

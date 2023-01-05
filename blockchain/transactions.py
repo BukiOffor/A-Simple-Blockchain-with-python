@@ -10,12 +10,13 @@ class Transaction:
         self.output = output
         self.sender = sender
         self.receiver = receiver
-                   
+    
+    # creating transaction blocks               
     def transaction_block(self):
         self.transaction_list = {"transaction_ID":self.transaction_id,"input":self.input, "output":self.output, "sender":self.sender,"receiver":self.receiver}
         Transaction.transactions.append(self.transaction_list)
        
-    
+    #adding transactions to transaction pools
     @classmethod
     def transaction_pool(cls):
         with open("mining_pool.csv", 'a') as file:
